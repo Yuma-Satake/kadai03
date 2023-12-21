@@ -10,7 +10,7 @@ if (!file_exists('logindata/' . $username . '.txt')) {
     $file = fopen('logindata/' . $username . '.txt', 'r');
     $savedPassword = fgets($file);
     fclose($file);
-    if ($password !== $savedPassword) {
+    if (md5($password) !== $savedPassword) {
         header('Location: loginScreen.php?message=パスワードが間違っています');
         exit;
     }
